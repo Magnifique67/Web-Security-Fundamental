@@ -1,0 +1,8 @@
+rules:
+  - id: insecure-practice
+    patterns:
+      - pattern: |
+          $FUNCTION($ARG1, $ARG2);
+        message: "Insecure practice detected."
+        severity: WARNING
+        languages: [java]
