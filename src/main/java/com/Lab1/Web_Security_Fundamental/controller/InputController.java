@@ -29,7 +29,6 @@ public class InputController {
         try {
             Optional<InputDTO> inputDTO = inputService.getInput(id);
             if (inputDTO.isPresent()) {
-                // Return the object directly, framework handles JSON serialization
                 return ResponseEntity.ok(inputDTO.get());
             } else {
                 return ResponseEntity.notFound().build();
