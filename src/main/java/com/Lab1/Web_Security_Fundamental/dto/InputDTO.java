@@ -17,4 +17,11 @@ public class InputDTO {
     @NotNull(message = "Name cannot be null")
     @Size(min = 1, max = 20, message = "Name must be between 1 and 20 characters")
     private String name;
+    public InputDTO(Long id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+    public InputDTO() {
+    }
 }
