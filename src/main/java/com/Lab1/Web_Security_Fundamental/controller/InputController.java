@@ -41,7 +41,6 @@ public class InputController {
     public ResponseEntity<InputDTO> createInput(@RequestBody @Valid InputDTO inputDTO) {
         try {
             InputDTO createdInput = inputService.createInput(inputDTO);
-            System.out.println("created");
             return ResponseEntity.status(HttpStatus.CREATED).body(createdInput);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
