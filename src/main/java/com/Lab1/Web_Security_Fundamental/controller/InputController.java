@@ -27,17 +27,10 @@ public class InputController {
     @GetMapping("/{id}")
     public ResponseEntity<InputDTO> getInput(@PathVariable @NotNull @Min(1) Long id) {
         try {
-            Optional<InputDTO> inputDTOOptional = inputService.getInput(id);
-            if (inputDTOOptional.isPresent()) {
-                InputDTO inputDTO = inputDTOOptional.get();
-
-                // Encode user input before returning it in the response
-                String encodedName = Encode.forHtml(inputDTO.getName());
-                String encodedEmail = Encode.forHtml(inputDTO.getEmail());
-
-                InputDTO safeInputDTO = new InputDTO(inputDTO.getId(), encodedName, encodedEmail);
-
-                return ResponseEntity.ok(safeInputDTO);
+            Optional<InputDTO> inputDTO = inputService.getInput(id);
+            if (inputDTO.isPresent()) {
+                // Return the object directly, framework handles JSON serialization
+                return ResponseEntity.ok(inputDTO.get());
             } else {
                 return ResponseEntity.notFound().build();
             }
@@ -45,6 +38,7 @@ public class InputController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
 
 
     @PostMapping("/add")
